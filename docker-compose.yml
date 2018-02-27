@@ -25,7 +25,7 @@ services:
   database:
     container_name: mysql-db
     hostname: mysql-db
-    build: mysql
+    image: mysql
     ports:
       - "3306:3306"
     environment:
