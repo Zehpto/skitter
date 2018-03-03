@@ -11,6 +11,4 @@ COPY index.html glassfish/domains/domain1/docroot/index.html
 COPY start.sh /
 COPY Skitter_war.war /
 
-EXPOSE 8080
-
 ENTRYPOINT ["/start.sh"]
