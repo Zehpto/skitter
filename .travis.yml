@@ -17,4 +17,4 @@ language: python
 python:
   - "2.7.14"
 script: 
-  - python hello.py
+  - locust -H http://127.0.0.1 -c 10 -n 500 -r 5 --no-web -f locustfile.py
