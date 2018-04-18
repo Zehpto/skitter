@@ -5,15 +5,15 @@ services:
     container_name: web1
     hostname: web1
     build: ./web-server
-    ports:
-      - "81:8080"
+    #   ports:
+    #  - "81:81"
 
   webserver_two:
     container_name: web2
     hostname: web2
     build: ./web-server
-    ports:
-      - "82:8080"
+    #ports:
+    #  - "82:81"
 
   load_balancer:
     container_name: load-balancer
@@ -31,3 +31,10 @@ services:
     volumes:
       - ./mysql/skitter.sql:/docker-entrypoint-initdb.d/skitter.sql
       - ./mysql/data:/var/lib/mysql
+  auth:
+    image: auth
+    container_name: auth
+    build: ./auth
+    hostname: auth
+    ports:
+      - "8080:8080"
