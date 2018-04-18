@@ -10,6 +10,10 @@ RUN chmod -R 777 /usr/share/nginx/html/CSS
 RUN chmod -R 777 /usr/share/nginx/html/img
 
 COPY index.html /usr/share/nginx/html
+COPY changeDisplayName.php /usr/share/nginx/html
+COPY common.php /usr/share/nginx/html/
+COPY test.php /usr/share/nginx/html/
+RUN chmod 640 /usr/share/nginx/html/*.php
 
 EXPOSE 81
 #FROM glassfish:latest
