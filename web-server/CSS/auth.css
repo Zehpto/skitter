@@ -32,7 +32,7 @@ button {
     color: rgba(255,255,255,0.9);
     -o-text-overflow: clip;
     text-overflow: clip;
-    background: #db0606;
+    background: #c90000;
     -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
     box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) ;
     text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
@@ -53,6 +53,20 @@ div {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
+    vertical-align:top;
+}
+
+
+#buttons {
+    text-align: center;
+}
+
+#buttons :first-child {
+    float: none;
+}
+
+#buttons :nth-child(2) {
+    float: none;
 }
 
 body {
