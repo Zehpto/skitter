@@ -56,6 +56,13 @@ div {
     vertical-align:top;
 }
 
+.logo {
+    margin-bottom: 20px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    vertical-align:top;
+}
 
 #buttons {
     text-align: center;
