@@ -16,16 +16,17 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rit_user` varchar(7) NOT NULL,
   `email` varchar(256) NOT NULL,
   `hash` varchar(60) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
   `username` varchar(15) NOT NULL,
   `display_name` varchar(50) NOT NULL,
   `profile_picture` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`rit_user`),
   UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `rit_user_UNIQUE` (`rit_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `follows`;
@@ -33,8 +34,8 @@ DROP TABLE IF EXISTS `follows`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `follows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `influencer_id` varchar(45) NOT NULL,
-  `follower_id` varchar(45) NOT NULL,
+  `influencer_id` varchar(7) NOT NULL,
+  `follower_id` varchar(7) NOT NULL,
   PRIMARY KEY (`influencer_id`,`follower_id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `follower_data_idx` (`follower_id`),
@@ -45,7 +46,7 @@ CREATE TABLE `follows` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'bob@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','bob','Bob McAlister',NULL),(2,'abby@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','abby','Abby Williams',NULL),(3,'ralph@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','ralph','Ralph Jenkins',NULL),(4,'sam@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','sam','Sam Johnston',NULL);
+INSERT INTO `users` VALUES ('bob1234','bob@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','bob','Bob McAlister',NULL),('awr4567','abby@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','abby','Abby Williams',NULL),('rsf1423','ralph@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','ralph','Ralph Jenkins',NULL),('tst1245','sam@skitter.com','$2b$10$I0HIgA7obA1a8VZuReYjQe06IuJgEG44eJyKAFhugqs8QjagWNIkm','sam','Sam Johnston',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
