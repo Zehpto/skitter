@@ -9,7 +9,13 @@ curl_setopt($curl, CURLOPT_POSTFIELDS, $curlString);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($curl);
 curl_close($curl);
-if($response == "error"){
-    header("Location: ../index.html");
+if($response == "success"){
+    header("Location: ../home.html");
+}
+else if($response == "register"){
+        header("Location: ../register.html");
+}
+else if($response == "error"){
+    print $repsonse;
 }
 ?>
