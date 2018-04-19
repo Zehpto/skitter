@@ -1,26 +1,21 @@
-FROM nginx
+FROM php:7.0-apache
 
-RUN mkdir /usr/share/nginx/html/CSS/
-RUN mkdir /usr/share/nginx/html/img/
-
-COPY CSS /usr/share/nginx/html/CSS
-COPY img /usr/share/nginx/html/img
-
-RUN chmod -R 777 /usr/share/nginx/html/CSS
-RUN chmod -R 777 /usr/share/nginx/html/img
+RUN mkdir /var/www/html/CSS/
+RUN mkdir /var/www/html/img/
+RUN mkdir /var/www/html/php/
 
 COPY CSS /var/www/html/CSS
 COPY img /var/www/html/img
 COPY php /var/www/html/php
-RUN chmod 640 /usr/share/nginx/html/php
+COPY /favicon.ico /var/www/html/
+
+RUN chmod -R 777 /var/www/html/CSS
+RUN chmod -R 777 /var/www/html/img
+RUN chmod -R 777 /var/www/html/php
+RUN chmod +rx /var/www/html/favicon.ico
+
+RUN echo 'AddType image/x-icon .ico' >> /etc/apache2/httpd.conf
+
+COPY /index.html /var/www/html/
 
 EXPOSE 81
-#FROM glassfish:latest
-
-#COPY index.html glassfish/domains/domain1/docroot/index.html
-#COPY default-web.xml glassfish/domains/domain1/config/default-web.xml
-
-#COPY start.sh /
-#COPY Skitter_war.war /
-
-#ENTRYPOINT ["/start.sh"]
