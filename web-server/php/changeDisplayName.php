@@ -2,12 +2,12 @@
 
 include_once("common.php");
 
-	if($stmt = $con->prepare("UPDATE users SET username=? where rit_user=?")){
+	if($stmt = $con->prepare("UPDATE users SET display_name=? where rit_user=?")){
 		
-		$username = $_GET["username"];
+		$display_name = $_GET["display_name"];
 		$rit_user = $_GET["rit_user"];
 
-		if($stmt->bind_param("ss",$username, $rit_user)){
+		if($stmt->bind_param("ss",$display_name, $rit_user)){
 			
 			if(!$stmt->execute()){
 
@@ -17,7 +17,7 @@ include_once("common.php");
 			die("Error - Issue binding prepared statement: " . mysqli_error($con));
 		}
 		if($stmt->close()){
-			echo "Username Successfully Changed";
+			echo "Display Name Successfully Changed";
 		}else{
 			die("Error - Failed to close prepared statement" . mysqli_error($con));
 		}

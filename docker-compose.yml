@@ -33,6 +33,7 @@ services:
     volumes:
       - ./mysql/skitter.sql:/docker-entrypoint-initdb.d/skitter.sql
       - ./mysql/data:/var/lib/mysql
+      
   auth:
     image: auth
     container_name: auth
