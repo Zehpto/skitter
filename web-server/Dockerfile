@@ -1,9 +1,12 @@
 FROM php:7.0-apache
 
+RUN docker-php-source extract && docker-php-source delete
+
 RUN mkdir /var/www/html/CSS/
 RUN mkdir /var/www/html/img/
 RUN mkdir /var/www/html/php/
 
+COPY php.ini /usr/local/etc/php
 COPY CSS /var/www/html/CSS
 COPY img /var/www/html/img
 COPY php /var/www/html/php

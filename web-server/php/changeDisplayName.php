@@ -1,13 +1,16 @@
 <?php
 
 include_once("common.php");
+
 	if($stmt = $mysqli->prepare("UPDATE users SET username=? where rit_user=?")){
 		
-		$username = $_GET["username"]
-		$rit_user = $_GET["rit_user"]
+		$username = $_GET["username"];
+		$rit_user = $_GET["rit_user"];
 
-		if($stmt->bind_param("ss",$username, $rit_user){
+		if($stmt->bind_param("ss",$username, $rit_user)){
+			
 			if(!$stmt->execute()){
+
 				die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
 			}
 		}else{
