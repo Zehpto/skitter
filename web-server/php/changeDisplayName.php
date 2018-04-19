@@ -4,8 +4,9 @@ include_once("common.php");
 
 	if($stmt = $con->prepare("UPDATE users SET display_name=? where rit_user=?")){
 		
-		$display_name = $_GET["display_name"];
-		$rit_user = $_GET["rit_user"];
+		$display_name = strip_tags($_GET["display_name"]);
+		$rit_user = "username";
+		$rit_user = strip_tags($_GET["rit_user"]);
 
 		if($stmt->bind_param("ss",$display_name, $rit_user)){
 			
@@ -18,9 +19,9 @@ include_once("common.php");
 
 		if($stmt->affected_rows == 1){
 
-			echo "The display name for $rit_user was changed.";
+			echo htmlspecialchars("True - Display name was set for $rit_user", ENT_QUOTES, 'UTF-8');
 		}else{
-			echo "The display name for $rit_user was NOT changed.";
+			echo htmlspecialchars("False - Display name was NOT set for $rit_user", ENT_QUOTES, 'UTF-8');
 		}
 
 		if($stmt->close()){
