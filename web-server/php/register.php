@@ -25,7 +25,4 @@ if(isset($_POST['usr'], $_POST['pass'])){
 	    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
 	}
 	echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-
-	echo htmlspecialchars("$curlString", ENT_QUOTES, 'UTF-8');
-
 ?>

@@ -4,14 +4,28 @@
 	</head>
     <body>
         <link rel='stylesheet' href='CSS/auth.css'>
-	    <form id='login' action='/php/login.php' method='post'>
+	    <form id='login'>
             <div class='logo'><img src="img/Skitter.png"></img></div>
-            <div><input class='textField' name='usr' type='text' placeholder='RIT Username' required></div>
-            <div><input class='textField' name='pass' type='password' placeholder='Password' required></div>
-            <div><button type='submit'>Login</button></div>
+            <div><input class='textField' id='usr' type='text' placeholder='RIT Username' required></div>
+            <div><input class='textField' id='pass' type='password' placeholder='Password' required></div>
+            <p id='loginResponse'></p>
+            <div><button type='button' onclick="attemptLogin(document.getElementById('usr').value, document.getElementById('pass').value);">Login</button></div>
         </form>
         <form id='register' action='/register.html' method='get'>
             <div><button type='submit'>Register</button></div>
         </form>
+        <script>
+function attemptLogin(usr, pass){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("loginResponse").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "php/login.php?usr="+usr+"&pass="+pass, true);
+    xhttp.send();
+
+}
+        </script>
     </body>
 </html> 

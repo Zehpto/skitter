@@ -17,15 +17,15 @@ if(isset($_POST['usr'], $_POST['pass'])){
 		$response = curl_exec($curl);
 		curl_close($curl);
 
-		if($response == "success"){
-		    header("Location: ../home.html");
-		}
-		else if($response == "register"){
-		        header("Location: ../register.html");
-		}
-		else if($response == "error"){
+		#if($response == "success"){
+		#    header("Location: ../home.html");
+		#}
+		#else if($response == "register"){
+		#        header("Location: ../register.html");
+		#}
+		#else if($response == "error"){
 		    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-		}
+		#}
 	}
 }
 ?>
