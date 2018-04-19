@@ -18,7 +18,7 @@ if(isset($_POST['usr'], $_POST['pass'])){
 		$response = curl_exec($curl);
 		curl_close($curl);
 		if($response == "success"){
-		    header("Location: ../index.html");
+		    header("Location: ../home.html");
 		}
 		else if($response == "register"){
 		        header("Location: ../register.html");
@@ -29,3 +29,5 @@ if(isset($_POST['usr'], $_POST['pass'])){
 	}
 }
 ?>
+
+d

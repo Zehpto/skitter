@@ -10,13 +10,13 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($curl);
 curl_close($curl);
 if($response == "created"){
-        header("Location: ../home.html");
+        header("Location: ../index.html");
 }
 else if($response == "error"){
-    print $response;
+    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
 }
 else if($repsonse == "already registered"){
-    print $repsonse;
+    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
 }
 print $response;
 
