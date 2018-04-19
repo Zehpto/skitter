@@ -8,6 +8,7 @@ RUN docker-php-source extract && \
 RUN mkdir /var/www/html/CSS/
 RUN mkdir /var/www/html/img/
 RUN mkdir /var/www/html/php/
+RUN mkdir /var/www/html/profile_picture/
 
 COPY php.ini /usr/local/etc/php
 COPY CSS /var/www/html/CSS
