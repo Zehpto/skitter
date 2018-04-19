@@ -6,10 +6,29 @@
         <link rel='stylesheet' href='CSS/auth.css'>
 	    <form id='register' action='/php/register.php' method='post'>
             <div class='logo'><img src="img/Skitter.png"></img></div>
-            <div><input class='textField' name='eml' type='text' placeholder='Email' required></div>
-            <div><input class='textField' name='display' type='text' placeholder='Display Name' required></div>
-            <div><input class='textField' name='RIT' type='text' placeholder='RIT Username' required></div>
-            <div><button type='submit'>Register</button></div>
+            <div><input class='textField' id='eml' type='text' placeholder='Email' required></div>
+            <div><input class='textField' id='display' type='text' placeholder='Display Name' required></div>
+            <div><input class='textField' id='RIT' type='text' placeholder='RIT Username' required></div>
+            <div><p id='registerResponse'></p></div>
+            <div><button type='button' onclick="attemptRegister(document.getElementById('RIT').value, document.getElementById('eml').value, document.getElementById('display').value);">Register</button></div>
         </form>
+        <script>
+function attemptRegister(RIT, eml, display){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(this.responseText == "created"){
+                window.location.href='index.html';
+            }else{
+                document.getElementById("registerResponse").innerHTML = this.responseText;
+            }
+        }
+    };
+    xhttp.open("POST", "php/register.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhttp.send("RIT="+RIT+"&eml="+eml"&display="+display);
+
+}
+        </script>
     </body>
 </html> 

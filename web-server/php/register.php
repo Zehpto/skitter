@@ -15,25 +15,6 @@ if(isset($_POST['RIT'], $_POST['eml'], $_POST['display'])){
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$response = curl_exec($curl);
 		curl_close($curl);
-		if($response == "created"){
-		        header("Location: ../index.html");
-		}
-		else if($response == "error"){
-		    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-		}
-		else if($response == "already registered"){
-		    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-		}
 		echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-
-		echo htmlspecialchars("$curlString", ENT_QUOTES, 'UTF-8');
 		
-	}else{
-		die("One or more required parameters is null");
-		}
-
-}else{
-	die("One of more required parameters is missing");
-	}
-
 ?>
