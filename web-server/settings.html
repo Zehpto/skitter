@@ -18,31 +18,63 @@
         <div class='settings'>
             <form id='DisplayName' action='/php/changeDisplayName.php' method='get'>
                 <p> change display name</p>
-                <input id='display_name' type='text' placeholder='New Display Name' required>
-                <input id='rit_user' type='text' placeholder='Username' required>
+                <input class='textField' id='display_name' type='text' placeholder='New Display Name' required>
+                <input class='textField' id='rit_user' type='text' placeholder='Username' required>
                 <button type='button' onclick="display(document.getElementById('display_name').value, document.getElementById('rit_user').value);">submit</button>
-                <p id ='demo'></p>
+                <p id='displayChangeResponse'></p>
             </form>
         </div>
         <div class='settings'>
-            <form id='Email' action='/php/changeEmail.php' method='get'>
+            <form id='EmailForm'>
                 <p> change Email</p>
-                <input name='email' type='text' placeholder='New Email' required>
-                <input name='rit_user' type='text' placeholder='Username' required>
-                <button type='submit'>submit</button>
+                <input class='textField' id='Email' type='text' placeholder='New Email' required>
+                <input class='textField' id='rit_username' type='text' placeholder='Username' required>
+                <button type='button' onclick="emailChange(document.getElementById('Email').value, document.getElementById('rit_username').value);">submit</button>
+                <p id='emailChangeResponse'></p>
             </form>
         </div>
+        <div class='settings'>
+            <form id='picture'>
+                <p> change Profile Picture</p>
+                <input id='pic' type='file' placeholder='New pic' required>
+                <button type='button' onclick="picChange(document.getElementById('pic').value);">submit</button>
+                <p id='picChangeResponse'></p>
+            </form>
+        </div>
+
         <script>
-            function display(display_name, rit_user){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("demo").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name+"&rit_user="+rit_user, true);
-            xhttp.send();
-            }
+
+function display(display_name, rit_user){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("displayChangeResponse").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name+"&rit_user="+rit_user, true);
+    xhttp.send();
+}
+function emailChange(email, rit_user){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("emailChangeResponse").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "php/changeEmail.php?email="+email+"&rit_user="+rit_user, true);
+    xhttp.send();
+}
+function picChange(img){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("picChangeResponse").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("POST", "php/changeProfileImage.php?myimage="+img, true);
+    xhttp.send();
+}
+
         </script>
     </body>
 </html>
