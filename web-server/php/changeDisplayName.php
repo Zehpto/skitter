@@ -11,18 +11,18 @@ include_once("common.php");
 			
 			if(!$stmt->execute()){
 
-				die("Error - Issue executing prepared statement: " . mysqli_error($mysqli));
+				die("Error - Issue executing prepared statement: " . mysqli_error($con));
 			}
 		}else{
-			die("Error - Issue binding prepared statement: " . mysqli_error($mysqli));
+			die("Error - Issue binding prepared statement: " . mysqli_error($con));
 		}
 		if($stmt->close()){
-			echo "<script>window.location.href = '/';</script>";
+			echo "Username Successfully Changed";
 		}else{
-			die("Error - Failed to close prepared statement" . mysqli_error($mysqli));
+			die("Error - Failed to close prepared statement" . mysqli_error($con));
 		}
 	}else{
-			die("Error - Issue preparing statement: " . mysqli_error($mysqli));
+			die("Error - Issue preparing statement: " . mysqli_error($con));
 	}
 	
 ?>
