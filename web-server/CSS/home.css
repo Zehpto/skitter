@@ -7,20 +7,27 @@
 }
 
 div {
-    margin-bottom: 5px;
+    clear:both;
+    margin-top: auto;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     vertical-align:top;
 }
 
+.settings {
+    top: 0;
+    bottom:0;
+}
+
 .topBar {
     background: #353535;
-    position: absolute;
     left:0;
     right:0;
     top:0;
     display: block;
+    border:0;
+    position:relative;
 }
 
 form {
@@ -28,6 +35,7 @@ form {
 }
 
 body {
+    margin: 0;
     background-color: gray;
 }
 
