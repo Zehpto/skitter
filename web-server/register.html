@@ -1,6 +1,16 @@
 <html>
-    <title>skitter</title>
+    <head>
+		<title>Skitter</title>
+	</head>
     <body>
-        register here!
+        <link rel='stylesheet' href='CSS/auth.css'>
+	    <form id='register' action='/php/register.php' method='post'>
+            <div class='logo'><img src="img/Skitter.png"></img></div>
+            <div><input class='textField' name='eml' type='text' placeholder='Email' required></div>
+            <div><input class='textField' name='display' type='text' placeholder='Display Name' required></div>
+            <div><input class='textField' name='RIT' type='text' placeholder='RIT Username' required></div>
+            <div><input class='textField' name='Name' type='text' placeholder='Name' required></div>
+            <div><button type='submit'>Register</button></div>
+        </form>
     </body>
-</html>
+</html> 
