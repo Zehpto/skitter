@@ -16,8 +16,8 @@
             </form>
         </div>
         <div class='settings'>
-            <form id='DisplayName' action='/php/changeDisplayName.php' method='get'>
-                <p> change display name</p>
+            <p>Change Display Name</p>
+            <form class='setForm' id='DisplayName' action='/php/changeDisplayName.php' method='get'>
                 <input class='textField' id='display_name' type='text' placeholder='New Display Name' required>
                 <input class='textField' id='rit_user' type='text' placeholder='Username' required>
                 <button type='button' onclick="display(document.getElementById('display_name').value, document.getElementById('rit_user').value);">submit</button>
@@ -25,8 +25,8 @@
             </form>
         </div>
         <div class='settings'>
-            <form id='EmailForm'>
-                <p> change Email</p>
+            <p>Change Email</p>
+            <form id='EmailForm' class='setForm'>
                 <input class='textField' id='Email' type='text' placeholder='New Email' required>
                 <input class='textField' id='rit_username' type='text' placeholder='Username' required>
                 <button type='button' onclick="emailChange(document.getElementById('Email').value, document.getElementById('rit_username').value);">submit</button>
@@ -34,8 +34,8 @@
             </form>
         </div>
         <div class='settings'>
-            <form id='picture'>
-                <p> change Profile Picture</p>
+            <p>Change profile Picture</p>
+            <form id='picture' class='setForm'>
                 <input id='pic' type='file' placeholder='New pic' required>
                 <button type='button' onclick="picChange(document.getElementById('pic').value);">submit</button>
                 <p id='picChangeResponse'></p>

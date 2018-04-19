@@ -30,8 +30,12 @@ div {
     position:relative;
 }
 
-form {
+.setForm {
     display: inline;
+    background: #353535;
+    padding: 20px;
+    -webkit-border-radius: 5px / 10px;
+    border-radius: 5px / 10px;
 }
 
 body {
@@ -46,8 +50,8 @@ body {
     margin: auto;
     padding: 6px;
     border: none;
-    -webkit-border-radius: 32px / 54px;
-    border-radius: 32px / 54px;
+    -webkit-border-radius: 5px / 10px;
+    border-radius: 5px / 10px;
     font: normal 18px/normal "Coda", Helvetica, sans-serif;
     /*color: rgba(0,142,198,1);*/
     -o-text-overflow: clip;
