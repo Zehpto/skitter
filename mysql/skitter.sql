@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `rit_user` char(7) NOT NULL,
+  `rit_user` varchar(10) NOT NULL,
   `email` varchar(100) NOT NULL,
   `display_name` varchar(30) NOT NULL,
   `profile_picture` blob,
@@ -31,8 +31,8 @@ DROP TABLE IF EXISTS `follows`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `follows` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `influencer_id` char(7) NOT NULL,
-  `follower_id` char(7) NOT NULL,
+  `influencer_id` varchar(10) NOT NULL,
+  `follower_id` varchar(10) NOT NULL,
   PRIMARY KEY (`influencer_id`,`follower_id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `follower_data_idx` (`follower_id`),
