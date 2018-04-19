@@ -4,7 +4,7 @@ if(isset($_POST['usr'], $_POST['pass'])){
 
 	if(!empty($_POST['usr']) && !empty($_POST['pass'])) {
 
-	$creds = array( 'usr' => $_POST['RIT'], 'display' => $_POST['display'], 'eml' => $_POST['eml'], 'nm' => $_POST['Name']);
+	$creds = array( 'usr' => $_POST['RIT'], 'display' => $_POST['display'], 'eml' => $_POST['eml']);
 
 	$url = 'http://auth:8080/register';
 
