@@ -2,15 +2,13 @@
 
 include_once("common.php");
 
+$image_name = $_FILES['myimage']['name'];
 
-$upload_dir = "/var/www/html/profile_picture/";
-$upload_image = $upload_dir . basename($_FILES["myimage"]["name"]);
-
-move_uploaded_file($_FILES["myimage"]["tmp_name"], $upload_image);
+$profile_picture=addslashes(file_get_contents($_FILES['myimage']['tmp_name']));
 
 if($stmt = $con->prepare("UPDATE users SET profile_picture=? where rit_user=?")){
 
-	$profile_picture = $folder . $upload_image;
+	$profile_picture = "deep vag";
 	$rit_user = "bob1234";
 
 	if($stmt->bind_param("ss",$profile_picture, $rit_user)){
