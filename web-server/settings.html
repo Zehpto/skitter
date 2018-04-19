@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Skitter</title>
+    </head>
+    <body>
+        <link rel='stylesheet' href='CSS/home.css'>
+        <div class='topBar'>
+            <form id='search' action='' method=''>
+                <img src='img/Logo.png' height='30'/>
+                <img src='img/Skitter.png' height='25'/>
+                <div class='center'>
+                    <input name='search' type='text' placeholder='search'>
+                </div>
+                <img src='img/Account.png' height='30' align='right'/>
+                <img src='img/settings.png' height='25'align='right'/>
+            </form>
+        </div>
+        <div class='settings'>
+            <form id='DisplayName' action='/php/changeDisplayName.php' method='get'>
+                <p> change display name</p>
+                <input id='display_name' type='text' placeholder='New Display Name' required>
+                <input id='rit_user' type='text' placeholder='Username' required>
+                <button type='button' onclick="display(document.getElementById('display_name').value, document.getElementById('rit_user').value);">submit</button>
+                <p id ='demo'></p>
+            </form>
+        </div>
+        <div class='settings'>
+            <form id='Email' action='/php/changeEmail.php' method='get'>
+                <p> change Email</p>
+                <input name='email' type='text' placeholder='New Email' required>
+                <input name='rit_user' type='text' placeholder='Username' required>
+                <button type='submit'>submit</button>
+            </form>
+        </div>
+        <script>
+            function display(display_name, rit_user){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name+"&rit_user="+rit_user, true);
+            xhttp.send();
+            }
+        </script>
+    </body>
+</html>
+

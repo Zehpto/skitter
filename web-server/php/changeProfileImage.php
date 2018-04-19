@@ -2,10 +2,11 @@
 
 include_once("common.php");
 
-$upload_image = $_FILES["myimage"]["name"];
-$folder = "/var/www/html/profile_picture/";
-move_uploaded_file($_FILES["myimage"]["tmp_name"], "$folder".$_FILES["myimage"]["name"]);
 
+$upload_dir = "/var/www/html/profile_picture/";
+$upload_image = $upload_dir . basename($_FILES["myimage"]["name"]);
+
+move_uploaded_file($_FILES["myimage"]["tmp_name"], $upload_image);
 
 if($stmt = $con->prepare("UPDATE users SET profile_picture=? where rit_user=?")){
 
