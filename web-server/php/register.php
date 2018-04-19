@@ -1,5 +1,5 @@
 <?php
-$creds = array( 'usr' => $_POST['RIT'], 'display' => $_POST['display'], 'eml' => $_POST['eml'], 'nm' => $_POST['Name']);
+$creds = array( 'usr' => $_POST['RIT'], 'display' => $_POST['display'], 'eml' => $_POST['eml']);
 $url = 'http://auth:8080/register';
 
 $curl = curl_init($url);
@@ -19,6 +19,4 @@ else if($repsonse == "already registered"){
     print $repsonse;
 }
 print $response;
-
-print $curlString;
 ?>
