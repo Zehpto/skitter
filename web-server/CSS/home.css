@@ -1,0 +1,33 @@
+.center {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    left:0;
+    right:0;
+}
+
+div {
+    margin-bottom: 5px;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    vertical-align:top;
+}
+
+.topBar {
+    background: #353535;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    display: block;
+}
+
+form {
+    display: inline;
+}
+
+body {
+    background-color: gray;
+}
+
