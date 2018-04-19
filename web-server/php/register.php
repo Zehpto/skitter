@@ -1,8 +1,8 @@
 <?php
 
-if(isset($_POST['usr'], $_POST['eml'], $_POST['display'])){
+if(isset($_POST['RIT'], $_POST['eml'], $_POST['display'])){
 
-	if(!empty($_POST['usr']) && !empty($_POST['eml']) && !empty($_POST['display'])) {
+	if(!empty($_POST['RIT']) && !empty($_POST['eml']) && !empty($_POST['display'])) {
 
 		$creds = array( 'usr' => $_POST['RIT'], 'display' => $_POST['display'], 'eml' => $_POST['eml']);
 
