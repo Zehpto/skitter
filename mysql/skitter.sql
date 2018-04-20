@@ -41,6 +41,18 @@ CREATE TABLE `follows` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sessions` (
+  `username` varchar(10) NOT NULL,
+  `session_id` char(30) DEFAULT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `session_id_UNIQUE` (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES ('bob1234','bob@skitter.com','Bob McAlister', NULL), ('joe5678','joe@skitter.com','Joe Smith', NULL);
@@ -52,6 +64,12 @@ LOCK TABLES `follows` WRITE;
 /*!40000 ALTER TABLE `follows` DISABLE KEYS */;
 INSERT INTO `follows` VALUES (1,'bob1234','joe5678'),(2,'joe5678','bob1234');
 /*!40000 ALTER TABLE `follows` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+LOCK TABLES `sessions` WRITE;
+/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
