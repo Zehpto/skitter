@@ -26,7 +26,7 @@ function attemptRegister(RIT, eml, display){
     };
     xhttp.open("POST", "php/register.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-    xhttp.send("RIT="+RIT+"&eml="+eml"&display="+display);
+    xhttp.send("eml="+eml+"&RIT="+RIT+"&display="+display);
 
 }
         </script>

@@ -16,5 +16,7 @@ if(isset($_POST['RIT'], $_POST['eml'], $_POST['display'])){
 		$response = curl_exec($curl);
 		curl_close($curl);
 		echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
-		
+
+	}
+}	
 ?>
