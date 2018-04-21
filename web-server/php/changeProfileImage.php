@@ -8,7 +8,6 @@ $profile_picture=addslashes(file_get_contents($_FILES['myimage']['tmp_name']));
 
 if($stmt = $con->prepare("UPDATE users SET profile_picture=? where rit_user=?")){
 
-	$profile_picture = "deep vag";
 	$rit_user = "bob1234";
 
 	if($stmt->bind_param("ss",$profile_picture, $rit_user)){
