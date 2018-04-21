@@ -16,11 +16,22 @@
         </form>
         <script>
 function attemptLogin(usr, pass){
-    var xhttp = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest(),
+        suc="success",
+        err="error",
+        fail="fail",
+        d= new Date();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(this.responseText == "success"){
-                window.location.href='home.html';
+            if(~this.responseText.indexOf(suc)){
+                if(!~this.responseText.indexOf(err)){
+                    if(!~this.responseText.indexOf(fail)){
+                        var ses = this.responseText.substring(8);
+                        var newD = new Date(d.getTime() + 180*60000);
+                        document.cookie = "session="+ses+"; expires="+newD+"; path=/";
+                        window.location.href='home.html';
+                    }
+                }
             }else{
                 document.getElementById("loginResponse").innerHTML = this.responseText;
             }
