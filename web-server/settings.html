@@ -37,7 +37,7 @@
             <p>Change profile Picture</p>
             <form id='picture' class='setForm'>
                 <input id='pic' type='file' placeholder='New pic' required>
-                <button type='button' onclick="picChange(document.getElementById('pic').value);">submit</button>
+                <button type='button' onclick="picChange(document.getElementById('pic').files[0]);">submit</button>
                 <p id='picChangeResponse'></p>
             </form>
         </div>
@@ -72,8 +72,9 @@ function picChange(img){
         }
     };
     xhttp.open("POST", "php/changeProfileImage.php", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-    xhttp.send("myimage="+img);
+    var formData = new FormData();
+    formData.append("myimage", img);
+    xhttp.send(formData);
 }
 
         </script>
