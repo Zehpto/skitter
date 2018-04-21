@@ -46,7 +46,7 @@ function display(display_name){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(!~this.responseText.indexOf("index.html")){
+            if(~this.responseText.indexOf("index.html")){
                 window.location = "../index.html";
             }else{
                 document.getElementById("displayChangeResponse").innerHTML = this.responseText;
@@ -60,7 +60,7 @@ function emailChange(email){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(!~this.responseText.indexOf("index.html")){
+            if(~this.responseText.indexOf("index.html")){
                 window.location = "../index.html";
             }else{
                 document.getElementById("emailChangeResponse").innerHTML = this.responseText;
@@ -74,7 +74,7 @@ function picChange(img){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if(!~this.responseText.indexOf("index.html")){
+            if(~this.responseText.indexOf("index.html")){
                 window.location = "../index.html";
             }else{
                 document.getElementById("picChangeResponse").innerHTML = this.responseText;
