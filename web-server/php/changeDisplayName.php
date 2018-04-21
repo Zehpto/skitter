@@ -1,15 +1,15 @@
 <?php
 
-if(!isset($_COOKIE["session"])){
+if(!isset($_COOKIE['session'])){
 	header("Location: /index.html");
 	
 }else{
 
 	include_once("common.php");
 
-	if(!isAuthenticated($_COOKIE["session"])){
+	if(!isAuthenticated($_COOKIE['session'])){
 		unset($_COOKIE['session']);
-		setcookie($_COOKIE["session"], '', time()-3600, '/');
+		setcookie($_COOKIE['session'], '', time()-3600, '/');
 		header("Location: /index.html");
 	
 	}else{
@@ -20,7 +20,7 @@ if(!isset($_COOKIE["session"])){
 
 
 				$display_name = strip_tags($_GET["display_name"]);
-				$session_id = strip_tags($_COOKIE["session"]);
+				$session_id = strip_tags($_COOKIE['session']);
 
 				if($stmt = $con->prepare("UPDATE skitter.users INNER JOIN skitter.sessions ON users.rit_user = sessions.username SET users.display_name = ? WHERE sessions.session_id = ?")){
 
