@@ -50,3 +50,16 @@ services:
     container_name: skits
     ports:
       - "9200:9200"
+
+  node:
+    container_name: node
+    hostname: node
+    build: ./nodeJS
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./nodeJS:/home/node/app
+    ports:
+      - "8888:8888"
+    command: "npm start"
