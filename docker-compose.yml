@@ -43,3 +43,10 @@ services:
     hostname: auth
     ports:
       - "8080:8080"
+
+  elasticsearch:
+    image: elasticsearch
+    hostname: skits
+    container_name: skits
+    ports:
+      - "9200:9200"
