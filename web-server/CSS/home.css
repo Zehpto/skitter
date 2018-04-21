@@ -30,15 +30,17 @@ div {
     position:relative;
 }
 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .feedForm {
-    display: block;
+    float:left;
+    width:33.33%;
+    content: "";
     background: #353535;
-    left:0;
-    right:0;
-    top:0;
-    display: block;
     border:0;
-    position:relative;
     padding: 20px;
     -webkit-border-radius: 5px / 10px;
     border-radius: 5px / 10px;
