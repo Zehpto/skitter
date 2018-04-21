@@ -19,7 +19,7 @@ CREATE TABLE `users` (
   `rit_user` varchar(10) NOT NULL,
   `email` varchar(100) NOT NULL,
   `display_name` varchar(30) NOT NULL,
-  `profile_picture` blob,
+  `profile_picture` mediumblob,
   PRIMARY KEY (`rit_user`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `rit_user_UNIQUE` (`rit_user`)
