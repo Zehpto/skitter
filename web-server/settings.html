@@ -3,7 +3,7 @@
         <title>Skitter</title>
     </head>
     <body>
-        <link rel='stylesheet' href='CSS/home.css'>
+        <link rel='stylesheet' href='CSS/set.css'>
         <div class='topBar'>
             <form id='search' action='' method=''>
                 <img src='img/Logo.png' height='30'/>
@@ -19,8 +19,7 @@
             <p>Change Display Name</p>
             <form class='setForm' id='DisplayName' action='/php/changeDisplayName.php' method='get'>
                 <input class='textField' id='display_name' type='text' placeholder='New Display Name' required>
-                <input class='textField' id='rit_user' type='text' placeholder='Username' required>
-                <button type='button' onclick="display(document.getElementById('display_name').value, document.getElementById('rit_user').value);">submit</button>
+                <button type='button' onclick="display(document.getElementById('display_name').value);">submit</button>
                 <p id='displayChangeResponse'></p>
             </form>
         </div>
@@ -44,21 +43,29 @@
 
         <script>
 
-function display(display_name, rit_user){
+function display(display_name){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("displayChangeResponse").innerHTML = this.responseText;
+            if(!~this.responseText.indexOf("index.html")){
+                window.location = "../index.html";
+            }else{
+                document.getElementById("displayChangeResponse").innerHTML = this.responseText;
+            }
         }
     };
-    xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name+"&rit_user="+rit_user, true);
+    xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name, true);
     xhttp.send();
 }
 function emailChange(email, rit_user){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("emailChangeResponse").innerHTML = this.responseText;
+            if(!~this.responseText.indexOf("index.html")){
+                window.location = "../index.html";
+            }else{
+                document.getElementById("emailChangeResponse").innerHTML = this.responseText;
+            }
         }
     };
     xhttp.open("GET", "php/changeEmail.php?email="+email+"&rit_user="+rit_user, true);
@@ -68,7 +75,11 @@ function picChange(img){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("picChangeResponse").innerHTML = this.responseText;
+            if(!~this.responseText.indexOf("index.html")){
+                window.location = "../index.html";
+            }else{
+                document.getElementById("picChangeResponse").innerHTML = this.responseText;
+            }
         }
     };
     xhttp.open("POST", "php/changeProfileImage.php", true);

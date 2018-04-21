@@ -30,23 +30,9 @@ div {
     position:relative;
 }
 
-.feedForm {
-    display: block;
-    background: #353535;
-    left:0;
-    right:0;
-    top:0;
-    display: block;
-    border:0;
-    position:relative;
-    padding: 20px;
-    -webkit-border-radius: 5px / 10px;
-    border-radius: 5px / 10px;
-}
-
-.postForm {
+.setForm {
     display: inline;
-    background: #000000;
+    background: #353535;
     padding: 20px;
     -webkit-border-radius: 5px / 10px;
     border-radius: 5px / 10px;
