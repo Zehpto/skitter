@@ -27,8 +27,7 @@
             <p>Change Email</p>
             <form id='EmailForm' class='setForm'>
                 <input class='textField' id='Email' type='text' placeholder='New Email' required>
-                <input class='textField' id='rit_username' type='text' placeholder='Username' required>
-                <button type='button' onclick="emailChange(document.getElementById('Email').value, document.getElementById('rit_username').value);">submit</button>
+                <button type='button' onclick="emailChange(document.getElementById('Email').value);">submit</button>
                 <p id='emailChangeResponse'></p>
             </form>
         </div>
@@ -57,7 +56,7 @@ function display(display_name){
     xhttp.open("GET", "php/changeDisplayName.php?display_name="+display_name, true);
     xhttp.send();
 }
-function emailChange(email, rit_user){
+function emailChange(email){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -68,7 +67,7 @@ function emailChange(email, rit_user){
             }
         }
     };
-    xhttp.open("GET", "php/changeEmail.php?email="+email+"&rit_user="+rit_user, true);
+    xhttp.open("GET", "php/changeEmail.php?email="+email, true);
     xhttp.send();
 }
 function picChange(img){
