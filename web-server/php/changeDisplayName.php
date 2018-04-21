@@ -1,50 +1,64 @@
 <?php
 
-include_once("common.php");
-
+if(!isset($_COOKIE["Session"])){
+	header("Location: ../index.html");
 	
-	if(isset($_GET["display_name"], $_GET["rit_user"])){
-		
-		if(!empty($_GET["display_name"]) && !empty($_GET["rit_user"])) {
+}else{
 
-			if($stmt = $con->prepare("UPDATE users SET display_name=? where rit_user=?")){
+	include_once("common.php");
+
+	if(!isAuthenticated($_COOKIE["session"])){
+		setcookie($_COOKIE["session"], '', time()-3600);
+		header("Location: ../index.html");
+		die();
+	
+	}else{
+
+		if(isset($_GET["display_name"])){
+
+			if(!empty($_GET["display_name"])) {
+
 
 				$display_name = strip_tags($_GET["display_name"]);
-				$rit_user = strip_tags($_GET["rit_user"]);
+				$session_id = strip_tags($_COOKIE["session"]);
 
-				if($stmt->bind_param("ss",$display_name, $rit_user)){
-					
-					if(!$stmt->execute()){
-						die("Error - Issue executing prepared statement: " . mysqli_error($con));
+				if($stmt = $con->prepare("UPDATE skitter.users INNER JOIN skitter.sessions ON users.rit_user = sessions.username SET users.display_name = ? WHERE sessions.session_id = ?")){
+
+					if($stmt->bind_param("ss",$display_name, $session_id)){
+						
+						if(!$stmt->execute()){
+							die("Error - Issue executing prepared statement: " . mysqli_error($con));
+						}
+					}else{
+						die("Error - Issue binding prepared statement: " . mysqli_error($con));
 					}
+
+					if($stmt->affected_rows == 1){
+
+						echo "True - Display Name was updated";
+
+					}else{
+						echo "False - Display Name was NOT updated";
+					}
+
+					if($stmt->close()){
+
+						
+					}else{
+						die("Error - Failed to close prepared statement" . mysqli_error($con));
+					}
+
 				}else{
-					die("Error - Issue binding prepared statement: " . mysqli_error($con));
-				}
-
-				if($stmt->affected_rows == 1){
-
-					echo htmlspecialchars("True - Display Name was updated for $rit_user", ENT_QUOTES, 'UTF-8');
-				}else{
-					echo htmlspecialchars("False - Display Name was NOT updated for $rit_user", ENT_QUOTES, 'UTF-8');
-				}
-
-				if($stmt->close()){
-
-					
-				}else{
-					die("Error - Failed to close prepared statement" . mysqli_error($con));
-				}
-
+					die("Error - Issue preparing statement: " . mysqli_error($con));
+					}
 			}else{
-				die("Error - Issue preparing statement: " . mysqli_error($con));
+				die("The required parameter is null");
 				}
-		}else{
-			die("One or more required parameters is null");
-			}
 
-	}else{
-		die("One of more required parameters is missing");
-		}
-	
+		}else{
+			die("The required parameter is missing");
+			}
+	}
+}	
 	
 ?>
