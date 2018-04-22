@@ -19,10 +19,8 @@ def hello():
 def user_search():
 
     if request.form['search']:
-        return("GOT EM")
-    search_query = sanitize(request.args.get('search'))
 
-    if len(search_query) > 0:
+        search_query = sanitize(request.form['search'])
 
         result = "False - No users match your request"
 
@@ -51,83 +49,93 @@ def user_search():
         return(result)
 
     else:
-        return "You did not enter a valid query"
+        return "False - You did not enter a valid query"
 
 
-@app.route("/FollowUser", methods=['GET'])
+@app.route("/FollowUser", methods=['POST'])
 def follow_user():
 
-    influencer = sanitize(request.args.get('follow'))
-    follower = "lxc6101"
+    if request.form['follow'] and request.form['session_id']:
 
-    if len(influencer) > 0:
+        influencer = sanitize(request.form['follow'])
+        session_id = sanitize(request.form['session_id'])
 
-        if influencer != follower:
 
-            connection = pymysql.connect(host='database',
-                                        user='root',
-                                            password='supersecurepass',
-                                            db='skitter',
-                                            charset='utf8mb4',
-                                            cursorclass=pymysql.cursors.DictCursor)
-            
-
-            try:
-                with connection.cursor() as cursor:
-
-                    sql_query = "INSERT INTO follows VALUES (%s, %s)"
-                    cursor.execute(sql_query, (influencer, follower,))
-                    connection.commit()
-            except:
-                return("False - Unable to follow user")
-
-            finally:
-                connection.close()
-
-            return("True - Followed user")
+        connection = pymysql.connect(host='database',
+                                    user='root',
+                                        password='supersecurepass',
+                                        db='skitter',
+                                        charset='utf8mb4',
+                                        cursorclass=pymysql.cursors.DictCursor)
         
-        else:
-            return "You cannot follow yourself"
+        try:
+            with connection.cursor() as cursor:
+
+                sql_query = "SELECT username FROM sessions WHERE session_id = %s"
+                cursor.execute(sql_query, (session_id))
+                follower = cursor.fetchone()['username']
+
+                if influencer == follower:
+                    return("False - You cannot follow yourself")
+
+            with connection.cursor() as cursor:
+
+                sql_query = "INSERT INTO follows VALUES (%s, %s)"
+                cursor.execute(sql_query, (influencer, follower,))
+                connection.commit()
+
+        except:
+            return("False - Unable to follow user")
+
+        finally:
+            connection.close()
+
+        return("True - Followed user")
 
     else:
         return "You did not enter a valid query"
 
 
-@app.route("/UnfollowUser", methods=['GET'])
+@app.route("/UnfollowUser", methods=['POST'])
 def unfollow_user():
 
-    influencer = sanitize(request.args.get('unfollow'))
-    follower = "lxc6101"
+    if request.form['unfollow'] and request.form['session_id']:
 
-    if len(influencer) > 0:
+        influencer = sanitize(request.form['unfollow'])
+        session_id = sanitize(request.form['session_id'])
 
-        if influencer != follower:
 
-            connection = pymysql.connect(host='database',
-                                        user='root',
-                                            password='supersecurepass',
-                                            db='skitter',
-                                            charset='utf8mb4',
-                                            cursorclass=pymysql.cursors.DictCursor)
-            
-
-            try:
-                with connection.cursor() as cursor:
-
-                    sql_query = "DELETE FROM follows WHERE influencer = %s AND follower = %s"
-                    cursor.execute(sql_query, (influencer, follower,))
-                    connection.commit()
-
-            except:
-                return("False - Unable to unfollow user")
-
-            finally:
-                connection.close()
-
-            return("True - Unfollowed user")
+        connection = pymysql.connect(host='database',
+                                    user='root',
+                                        password='supersecurepass',
+                                        db='skitter',
+                                        charset='utf8mb4',
+                                        cursorclass=pymysql.cursors.DictCursor)
         
-        else:
-            return "You cannot unfollow yourself"
+        try:
+
+            with connection.cursor() as cursor:
+
+                sql_query = "SELECT username FROM sessions WHERE session_id = %s"
+                cursor.execute(sql_query, (session_id))
+                follower = cursor.fetchone()['username']
+
+                if influencer == follower:
+                    return("False - You cannot unfollow yourself")
+
+            with connection.cursor() as cursor:
+
+                sql_query = "DELETE FROM follows WHERE influencer = %s AND follower = %s"
+                cursor.execute(sql_query, (influencer, follower,))
+                connection.commit()
+
+        except:
+            return("False - Unable to unfollow user")
+
+        finally:
+            connection.close()
+
+        return("True - Unfollowed user")
 
     else:
         return "You did not enter a valid query"

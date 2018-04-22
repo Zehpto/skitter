@@ -40,7 +40,7 @@ if(!isset($_COOKIE['session'])){
 					$query_type = "search";
 					$query = strip_tags($_POST['search']);
 					$url = 'http://flask:5000/UserSearch';
-					$creds = array( 'search' => $query, 'session_id' => $session_id);
+					$creds = array( 'search' => $query);
 					}
 
 				$curl = curl_init($url);
