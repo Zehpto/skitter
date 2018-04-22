@@ -9,7 +9,10 @@
                 <img src='img/Logo.png' height='30'/>
                 <img src='img/Skitter.png' height='25'/>
                 <div class='center'>
-                    <input name='search' type='text' placeholder='search'>
+                    <form>
+                        <input id='search' type='text' placeholder='search'>
+                        <button type='button' onclick="searchUser(document.getElementById('search').value);">search</button>
+                    </form>
                 </div>
                 <img src='img/Account.png' height='30' align='right'/>
                 <a href='settings.html'>
@@ -19,7 +22,7 @@
         </div>
         <div class='row'>
             <form class='feedForm' action='', method='post'>
-                <textarea name='newSkit' class='textField' placeholder='daddy?' rows='4' cols='40' maxlength='150'></textarea>
+                <textarea id='newSkit' class='textField' placeholder='daddy?' rows='4' cols='40' maxlength='150'></textarea>
                 <button type='submit'>submit</button>
             </form>
             <form class='feedForm'>
@@ -28,7 +31,42 @@
             <form class='feedForm'>
                 <input name='search' class='textField'type='text' placeholder='search'>
             </form>
+            <form style="display: hidden" action="php/search.php" method="POST" id="form">
+                  <input type="hidden" id="res" name="res" value=""/>
+            </form>
         </div>
+        <script>
+function searchUser(searchString){
+    var xhttp = new XMLHttpRequest();
+    document.getElementById('newSkit').placeholder = "xhttp";
+    var ses = getCookie("session");
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('res').value = this.responseText;
+            document.getElementById('form').submit();
+        }
+    };
+    xhttp.open("POST", "php/FlaskProxy.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhttp.send("search="+searchString+"&session_id="+ses);
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+        </script>
     </body>
 </html>
 
