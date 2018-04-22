@@ -23,7 +23,6 @@
                 $counter = 0;
                 while($counter < ($numRes-1)){
                         echo "<tr><td>";
-                        $name = ucfirst($row['firstname']) . ' ' . ucfirst($row['lastname']);
                         echo "<a href='account.php?user=".$users[$counter]."'>". $users[$counter] . "</a>";
                         echo "</td></tr>";
                         $counter++;
