@@ -23,8 +23,10 @@ if(isset($_POST['usr'], $_POST['pass'])){
 	    if(strcmp($code, "success") == 0){
 	    	if(strlen($cooke_value) == 30){
 	    		setcookie("session", $cooke_value, time() + 10800, "/");
-	    		header("Location: /home.html");
+	    		echo "success";
 	    	}
+	    }else{
+	    	echo "fail";
 	    }
 
 	}
