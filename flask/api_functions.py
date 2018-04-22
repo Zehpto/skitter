@@ -100,7 +100,7 @@ def follow_user():
 def unfollow_user():
 
     if request.form['unfollow'] and request.form['session_id']:
-
+        
         influencer = sanitize(request.form['unfollow'])
         session_id = sanitize(request.form['session_id'])
 

@@ -28,23 +28,23 @@ if(!isset($_COOKIE['session'])){
 					$query_type = "follow";
 					$query = strip_tags($_POST['follow']);
 					$url = 'http://flask:5000/FollowUser';
-					$creds = array( 'follow' => $query, 'session_id' => $session_id);
+					$data = array( 'follow' => $query, 'session_id' => $session_id);
 					}
 				elseif(!empty($_POST['unfollow'])){
 					$query_type = "unfollow";
 					$query = strip_tags($_POST['unfollow']);
 					$url = 'http://flask:5000/UnfollowUser';
-					$creds = array( 'unfollow' => $query, 'session_id' => $session_id);
+					$data = array( 'unfollow' => $query, 'session_id' => $session_id);
 					}
 				elseif(!empty($_POST['search'])){
 					$query_type = "search";
 					$query = strip_tags($_POST['search']);
 					$url = 'http://flask:5000/UserSearch';
-					$creds = array( 'search' => $query);
+					$data = array( 'search' => $query);
 					}
 
 				$curl = curl_init($url);
-				$curlString = http_build_query($creds, '', '&');
+				$curlString = http_build_query($data, '', '&');
 				curl_setopt($curl, CURLOPT_POST, 1);
 				curl_setopt($curl, CURLOPT_POSTFIELDS, $curlString);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -54,11 +54,11 @@ if(!isset($_COOKIE['session'])){
 				echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
 
 			}else{
-				die("False - Exactly one parameter can accept data");
+				die("False - Exactly one search parameter can accept data");
 				}
 
 		}else{
-			die("False - You must have exactly one parameter set");
+			die("False - You must have exactly one search parameter set");
 			}
 	}
 }	
