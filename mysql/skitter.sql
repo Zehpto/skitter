@@ -30,15 +30,13 @@ DROP TABLE IF EXISTS `follows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `follows` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `influencer_id` varchar(10) NOT NULL,
-  `follower_id` varchar(10) NOT NULL,
-  PRIMARY KEY (`influencer_id`,`follower_id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `follower_data_idx` (`follower_id`),
-  CONSTRAINT `follower_data` FOREIGN KEY (`follower_id`) REFERENCES `users` (`rit_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `influencer_data` FOREIGN KEY (`influencer_id`) REFERENCES `users` (`rit_user`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `influencer` varchar(10) NOT NULL,
+  `follower` varchar(10) NOT NULL,
+  PRIMARY KEY (`influencer`,`follower`),
+  KEY `follower_data_idx` (`follower`),
+  CONSTRAINT `follower_data` FOREIGN KEY (`follower`) REFERENCES `users` (`rit_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `influencer_data` FOREIGN KEY (`influencer`) REFERENCES `users` (`rit_user`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 DROP TABLE IF EXISTS `sessions`;
@@ -62,7 +60,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `follows` WRITE;
 /*!40000 ALTER TABLE `follows` DISABLE KEYS */;
-INSERT INTO `follows` VALUES (1,'bob1234','joe5678'),(2,'joe5678','bob1234');
+INSERT INTO `follows` VALUES ('bob1234','joe5678'),('joe5678','bob1234');
 /*!40000 ALTER TABLE `follows` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

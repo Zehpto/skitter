@@ -44,9 +44,18 @@ services:
     ports:
       - "8080:8080"
 
+  flask:
+    image: flask
+    container_name: flask
+    build: ./flask
+    hostname: flask
+    ports:
+      - "5000:5000" 
+
   elasticsearch:
     image: elasticsearch
     hostname: skits
     container_name: skits
     ports:
       - "9200:9200"
+

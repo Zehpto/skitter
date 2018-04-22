@@ -52,11 +52,11 @@ if(!isset($_COOKIE['session'])){
 					die("Error - Issue preparing statement: " . mysqli_error($con));
 					}
 			}else{
-				die("The required parameter is null");
+				die("False - The required parameter is null");
 				}
 
 		}else{
-			die("The required parameter is missing");
+			die("False - The required parameter is missing");
 			}
 	}
 }	
