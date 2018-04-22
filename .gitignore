@@ -3,3 +3,4 @@
 .login.php.swp
 mysql/data
 ..gitignore.un~
+..travis.yml.un~
