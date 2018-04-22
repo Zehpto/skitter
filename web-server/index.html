@@ -26,10 +26,10 @@ function attemptLogin(usr, pass){
             if(~this.responseText.indexOf(suc)){
                 if(!~this.responseText.indexOf(err)){
                     if(!~this.responseText.indexOf(fail)){
-                        var ses = this.responseText.substring(8);
-                        var newD = new Date(d.getTime() + 180*60000);
-                        document.cookie = "session="+ses+"; expires="+newD+"; path=*/*";
-                        window.location.href='home.html';
+                        //var ses = this.responseText.substring(8);
+                        //var newD = new Date(d.getTime() + 180*60000);
+                        //document.cookie = "session="+ses+"; expires="+newD+"; path=*/*;";
+                        //window.location.href='home.html';
                     }
                 }
             }else{

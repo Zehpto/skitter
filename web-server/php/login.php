@@ -17,7 +17,16 @@ if(isset($_POST['usr'], $_POST['pass'])){
 		$response = curl_exec($curl);
 		curl_close($curl);
 
-	    echo htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
+	    $data = htmlspecialchars("$response", ENT_QUOTES, 'UTF-8');
+	    list($code, $cooke_value) = explode(":", $data);
+
+	    if(strcmp($code, "success") == 0){
+	    	if(strlen($cooke_value) == 30){
+	    		setcookie("session", $cooke_value, time() + 10800, "/");
+	    		header("Location: /home.html");
+	    	}
+	    }
+
 	}
 }
 ?>
