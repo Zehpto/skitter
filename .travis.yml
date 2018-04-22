@@ -9,12 +9,12 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
   - docker-compose --version
-  - docker-compose up --build -d
+  - docker-compose -f travis_tests/docker-compose.yml up --build -d
 
 install: 
-  - pip install locustio
+  - pip install -r travis_tests/db_requirements.txt
 language: python
 python:
   - "2.7.14"
 script: 
-  - locust -H http://127.0.0.1 -c 10 -n 500 -r 5 --no-web -f locustfile.py
+  - python travis_tests/modify_db.py
