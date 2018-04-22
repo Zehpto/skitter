@@ -28,7 +28,7 @@ function attemptLogin(usr, pass){
                     if(!~this.responseText.indexOf(fail)){
                         var ses = this.responseText.substring(8);
                         var newD = new Date(d.getTime() + 180*60000);
-                        document.cookie = "session="+ses+"; expires="+newD+"; path=/";
+                        document.cookie = "session="+ses+"; expires="+newD+"; path=*/*";
                         window.location.href='home.html';
                     }
                 }
@@ -39,6 +39,7 @@ function attemptLogin(usr, pass){
     };
     xhttp.open("POST", "php/login.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhttp.setRequestHeader("Accept-Encoding", "br;q=1");
     xhttp.send("usr="+usr+"&pass="+pass);
 
 }
