@@ -16,8 +16,8 @@
             </form>
         </div>
         <div class='row'>
-            <form class='feedForm' action='', method='post'>
-                <textarea id='newSkit' class='textField' placeholder='daddy?' rows='4' cols='40' maxlength='150'></textarea>
+            <form class='feedForm' action='php/skitHandler.php', method='post'>
+                <textarea name='newSkit' class='textField' placeholder='daddy?' rows='4' cols='40' maxlength='150'></textarea>
                 <button type='submit'>submit</button>
             </form>
             <form class='feedForm'>
@@ -30,41 +30,6 @@
                   <input type="hidden" id="res" name="res" value=""/>
             </form>
         </div>
-        <script>
-function searchUser(searchString){
-    var xhttp = new XMLHttpRequest();
-    if(searchString == ""){
-        return;
-    }
-    //var ses = getCookie("session");
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            //document.getElementById('res').value = this.responseText;
-            //document.getElementById('form').submit();
-        }
-    };
-    xhttp.open("POST", "php/search.php", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-    xhttp.send("search="+searchString);
-    window.location = "php/search.php";
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-        </script>
     </body>
 </html>
 
