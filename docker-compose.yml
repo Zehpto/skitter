@@ -5,29 +5,23 @@ services:
     container_name: web1
     hostname: web1
     build: ./web-server
-    #   ports:
-    #  - "81:81"
 
   webserver_two:
     container_name: web2
     hostname: web2
     build: ./web-server
-    #ports:
-    #  - "82:81"
 
   load_balancer:
     container_name: load-balancer
     hostname: load-balancer
     build: ./load-balancer
     ports:
-      - "80:80"
+      - "443:443"
 
   database:
     container_name: mysql-db
     hostname: mysql-db
     image: mysql
-    ports:
-      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "supersecurepass"
     volumes:
@@ -39,33 +33,25 @@ services:
     container_name: auth
     build: ./auth
     hostname: auth
-    ports:
-      - "8080:8080"
 
   flask:
     image: flask
     container_name: flask
     build: ./flask
     hostname: flask
-    ports:
-      - "5000:5000" 
 
-  elasticsearch:
-    image: elasticsearch
-    hostname: skits
-    container_name: skits
-    ports:
-      - "9200:9200"
- 
-  node:
-    container_name: node
-    hostname: node
-    build: ./nodeJS
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./nodeJS:/home/node/app
-    ports:
-      - "8888:8888"
-    command: "npm start"
+#  elasticsearch:
+#    image: elasticsearch
+#    hostname: skits
+#    container_name: skits
+
+#  node:
+#    container_name: node
+#    hostname: node
+#    build: ./nodeJS
+#    working_dir: /home/node/app
+#    environment:
+#      - NODE_ENV=production
+#    volumes:
+#      - ./nodeJS:/home/node/app
+#    command: "npm start"
