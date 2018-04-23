@@ -20,12 +20,13 @@ public class Registration {
             stmnt.setString(1, username);
             ResultSet result = stmnt.executeQuery();
             if(result.isBeforeFirst()) {
-                stmnt = con.prepareStatement("replace into sessions values(username=?,session_id=?)");
+                stmnt = con.prepareStatement("replace into sessions values(?,?)");
                 stmnt.setString(1, username);
                 stmnt.setString(2, session);
                 stmnt.executeUpdate();
+                return session;
             }else {
-                stmnt = con.prepareStatement("insert into sessions values(username=?,session_id=?)");
+                stmnt = con.prepareStatement("insert into sessions values(?,?)");
                 stmnt.setString(1, username);
                 stmnt.setString(2, session);
                 stmnt.executeUpdate();
