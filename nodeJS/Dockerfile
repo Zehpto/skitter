@@ -1,3 +1,2 @@
 FROM node:latest
-
-EXPOSE 8888
+RUN npm install express body-parser --save

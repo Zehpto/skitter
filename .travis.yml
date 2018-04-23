@@ -8,15 +8,27 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
+<<<<<<< HEAD
   - docker-compose -f travis_tests/docker-compose.yml up -d
 
 install: 
   - pip install -r travis_tests/db_requirements.txt --upgrade
 
+=======
+  - docker-compose --version
+  - docker-compose -f travis_tests/docker-compose.yml up --build -d
+
+install: 
+  - pip install -r travis_tests/db_requirements.txt
+>>>>>>> 93a67f43928aecbedb6e4808e361ea1b9929db84
 language: python
 
 python:
   - "2.7.14"
 
 script: 
+<<<<<<< HEAD
   - sleep 60 && python travis_tests/modify_db.py
+=======
+  - python travis_tests/modify_db.py
+>>>>>>> 93a67f43928aecbedb6e4808e361ea1b9929db84
