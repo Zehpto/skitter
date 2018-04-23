@@ -17,10 +17,26 @@ if(!isset($_COOKIE['session'])){
 
         if(isset($_GET["user"])){
 
-            if(!empty($_GET["user"])) {
-                echo "<p>page belongs to ".$_GET["user"]."</p>";
+            if(!eimpty($_GET["user"])) {
+                $user = strip_tags($_GET["user"]);
+                $session_id = strip_tags($_COOKIE['session']);
+
+                echo "<p>page belongs to ".$user."</p>";
+                if($stmt = $con->prepare("SELECT * FROM skitter.follow WHERE  = ?")){
+
+                    if($stmt->bind_param("ss",$user)){
+
+                        if(!$stmt->execute()){
+                            die("Error - Issue executing prepared statement: " . mysqli_error($con));
+                        }
+                    }else{
+                        die("Error - Issue binding prepared statement: " . mysqli_error($con));
+                    }
+
+                    echo "<div><button type='submit'></button></div>";
+
+                }
             }
         }
     }
-}
 ?>

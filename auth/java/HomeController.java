@@ -14,34 +14,33 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam(value = "eml") String email, @RequestParam(value = "passwd") String password) {
-        String[] RITusr = email.split("@");
+        String[] RITusr = email.split("@rit.edu");
         if(RITusr[0].length() > 10){
             return "Invalid Username";
         }
-        Boolean signin = LDAPLogin.doLogin(RITusr[0], password);
-        if(signin) {
-            String message;
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con= DriverManager.getConnection(
-                        "jdbc:mysql://mysql-db:3306/skitter","root","supersecurepass");
-                PreparedStatement stmnt = con.prepareStatement("select * from users where rit_user=?");
-                stmnt.setString(1, RITusr[0]);
-                ResultSet result = stmnt.executeQuery();
-                if(result.isBeforeFirst()) {
-                    String session = Registration.createSession(RITusr[0]);
-                    message = "success:"+session;
-                }else {
-                    message = "register";
-                }
-                con.close();
-            }catch(Exception e) {
-                System.out.println(e);
-                message = "error";
-            }
-            return message;
-        }else
-            return "login failed";
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://mysql-db:3306/skitter","root","supersecurepass");
+            PreparedStatement stmnt = con.prepareStatement("select * from users where rit_user=?");
+            stmnt.setString(1, RITusr[0]);
+            ResultSet result = stmnt.executeQuery();
+            if(result.isBeforeFirst()) {
+                Boolean signin = LDAPLogin.doLogin(RITusr[0], password);
+                  if(signin) {
+                      String session = Registration.createSession(RITusr[0]);
+                      con.close();
+                      return "success:"+session;
+                  }else {
+                      con.close();
+                      return "register";
+                  }
+            }else
+                return "login failed";
+        }catch(Exception e) {
+            System.out.println(e);
+            return "error";
+        }
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
