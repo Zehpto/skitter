@@ -21,6 +21,46 @@ function addSkit(user, data){
     putReq.end();
 }
 
+function getSkits(user){
+    var http = require('http');
+    var options = {
+        host: "skits",
+        port: "9200",
+        path: "/skits/"+user+"/_search?q=*",
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    };
+    var getReq = http.request(options, function (res){
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('Response: ' + chunk);
+        });
+    });
+    getReq.end();
+}
+
+function delSkit(user, id){
+    var http = require('http');
+    var options = {
+        host: "skits",
+        port: "9200",
+        path: "/skits/"+user+"/+id",
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    };
+    var delReq = http.request(options, function (res){
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            console.log('Response: ' + chunk);
+        });
+    });
+    delReq.end();
+}
+
 var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -43,13 +83,18 @@ app.post('/addSkit', function(req, res){
     res.end();
 });
 
-
-
-/*
-http.createServer(function (req, res) {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        var params = req.body;
-        res.write(params[0]);
-        //addSkit();
+app.post('/getSkit', function(req, res){
+        var user = req.body.user;
+        getSkit(user);
+        console.log('Skits retrieved');
         res.end();
-}).listen(8888);*/
+});
+
+app.post('/delSkit', function(req, res){
+        var id = req.body.delSkit;
+        var user = req.body.user;
+        delSkit(user, id);
+        console.log('Skit removed');
+        res.end();
+});
+

@@ -2,7 +2,7 @@
     <head>
         <title>Skitter</title>
     </head>
-    <body>
+    <body onload='loadSkits();'>
         <link rel='stylesheet' href='CSS/home.css'>
         <div class='topBar'>
             <form action='/php/search.php' method='post'>
@@ -17,11 +17,11 @@
         </div>
         <div class='row'>
             <form class='feedForm' action='php/skitHandler.php', method='post'>
-                <textarea name='newSkit' class='textField' placeholder='daddy?' rows='4' cols='40' maxlength='150'></textarea>
-                <button type='submit'>submit</button>
+                <input type='text' name='newSkit' class='textField' placeholder='Whats on your mind...?' rows='4' cols='40' maxlength='150'/>
+                <!--<button type='submit'>submit</button>-->
             </form>
             <form class='feedForm'>
-                <input name='search' class='textField'type='text' placeholder='search'>
+                <p id='skitFeed'>No skits :(</p>
             </form>
             <form class='feedForm'>
                 <input name='search' class='textField'type='text' placeholder='search'>
@@ -30,6 +30,25 @@
                   <input type="hidden" id="res" name="res" value=""/>
             </form>
         </div>
+        <script>
+function loadSkits(){
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if(~this.responseText.indexOf("index.html")){
+                window.location = "../index.html";
+            }else{                                               
+                document.getElementById('skitFeed').innerHTML = this.responseText;
+            }
+        }
+    };
+    xhttp.open("POST", "php/skitHandler.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+    xhttp.send("getSkit=0");
+
+}
+        </script>
     </body>
 </html>
 

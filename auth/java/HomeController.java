@@ -63,7 +63,7 @@ public class HomeController {
             stmnt.setString(1, username);
             ResultSet result = stmnt.executeQuery();
             if(result.isBeforeFirst()) {
-                toReturn = "already registered";
+                toReturn = "registration failed";
             }else {
                 PreparedStatement register = con.prepareStatement("insert into users values(?,?,?,NULL)");
                 register.setString(1, username);
