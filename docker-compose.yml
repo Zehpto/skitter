@@ -27,7 +27,7 @@ services:
     hostname: mysql-db
     image: mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "supersecurepass"
     volumes:
